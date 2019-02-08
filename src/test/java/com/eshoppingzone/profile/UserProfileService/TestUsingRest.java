@@ -1,7 +1,7 @@
 package com.eshoppingzone.profile.UserProfileService;
 
 import static org.assertj.core.api.Assertions.assertThat;
-
+import static org.junit.Assert.assertEquals;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,9 +9,7 @@ import java.util.List;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.eshoppingzone.profile.UserProfileService.pojo.Address;
-import com.eshoppingzone.profile.UserProfileService.pojo.Role;
 import com.eshoppingzone.profile.UserProfileService.pojo.UserProfile;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +26,7 @@ public class TestUsingRest {
     private TestRestTemplate testRestTemplate;
     
     @Test
-    public void testAPI() throws Exception {
+    public void testGetAPI() throws Exception {
         //arrange
  
         //act
@@ -39,7 +37,7 @@ public class TestUsingRest {
     }
     
     @Test
-    public void testAPIThatDoesNotExist() throws Exception {
+    public void testGetAPIThatDoesNotExist() throws Exception {
         //arrange
  
         //act
@@ -51,9 +49,9 @@ public class TestUsingRest {
     
     
     @Test
-    public void testPost()
+    public void testPostAPI()
     {
-    	Address address=new Address(303,
+    	Address address=new Address(404,
     			"jp road",
     			"airoli",
     			"mumbai",
@@ -79,17 +77,12 @@ public class TestUsingRest {
     	assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
     }
     
-    
     @Test
-    public void testdelete() throws Exception {
-        //arrange
- 
-        //act
-        ResponseEntity<void> responseEntity= testRestTemplate.delete("/profiles", void.class);
- 
-        //assert
-        assertThat(responseEntity.ge
-        tStatusCode()).isEqualTo(HttpStatus.OK);
+    public void toCheckGetByProfileId() {
+        ResponseEntity<String> entity = testRestTemplate.getForEntity("/profiles/1", String.class);
+        assertEquals(entity.getStatusCode(), HttpStatus.OK);
     }
-    
+
+ 
+ 
 }

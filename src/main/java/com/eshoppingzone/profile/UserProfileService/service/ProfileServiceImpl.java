@@ -1,8 +1,6 @@
 package com.eshoppingzone.profile.UserProfileService.service;
 
 import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,8 +42,8 @@ public class ProfileServiceImpl implements ProfileService {
 	}
 
 	@Override
-	public Optional<UserProfile> getByProfileId(int profileId) {
-		return repository.findById(profileId);
+	public UserProfile getByProfileId(int profileId) {
+		return repository.findById(profileId).get();
 	}
 
 	@Override
@@ -57,7 +55,6 @@ public class ProfileServiceImpl implements ProfileService {
 	public void deleteProfile(int profileId) {
 		 repository.deleteById(profileId);;
 	}
-
 
 	
 }

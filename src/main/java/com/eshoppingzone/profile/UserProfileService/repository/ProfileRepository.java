@@ -6,5 +6,7 @@ import com.eshoppingzone.profile.UserProfileService.pojo.UserProfile;
 
 public interface ProfileRepository extends JpaRepository<UserProfile, Integer>{
 
+
+
 	
 }

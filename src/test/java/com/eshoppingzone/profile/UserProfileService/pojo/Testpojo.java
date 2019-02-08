@@ -12,5 +12,5 @@ public class Testpojo {
 		userprofile.setFullName("ramesh"); 
 		assertEquals("ramesh", userprofile.getFullName());
 	}
-
+	
 }

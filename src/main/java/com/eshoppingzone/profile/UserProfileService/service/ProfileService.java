@@ -1,8 +1,6 @@
 package com.eshoppingzone.profile.UserProfileService.service;
 
 import java.util.List;
-import java.util.Optional;
-
 import com.eshoppingzone.profile.UserProfileService.pojo.UserProfile;
 
 public interface ProfileService {
@@ -11,7 +9,7 @@ public interface ProfileService {
 
 	List<UserProfile> getAllProfiles();
 
-	Optional<UserProfile> getByProfileId(int profileId);
+	UserProfile getByProfileId(int profileId);
 
 	void updateProfile(UserProfile userProfile);
 
