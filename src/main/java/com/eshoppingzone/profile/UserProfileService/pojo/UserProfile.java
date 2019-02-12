@@ -15,6 +15,7 @@ public class UserProfile {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int profileId;
+	private String username;
 	private String fullName;
 	private String image;
 	private String emailId;
@@ -26,13 +27,14 @@ public class UserProfile {
 	private LocalDate dateOfBirth;
 	private String gender;
 	private String role;
+																																		
 	
 	
-	
-	public UserProfile(int profileId, String fullName, String image, String emailId, String phoneNo,
+	public UserProfile(int profileId,String username, String fullName, String image, String emailId, String phoneNo,
 			List<Address> addresses, String about, LocalDate dateOfBirth, String gender, String role) {
 		super();
 		this.profileId = profileId;
+		this.username=username;
 		this.fullName = fullName;
 		this.image = image;
 		this.emailId = emailId;
@@ -49,6 +51,14 @@ public class UserProfile {
 		
 	}
 	
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
 	public int getProfileId() {
 		return profileId;
 	}

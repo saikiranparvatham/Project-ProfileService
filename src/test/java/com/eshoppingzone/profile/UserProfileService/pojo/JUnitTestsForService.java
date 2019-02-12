@@ -77,7 +77,7 @@ public class JUnitTestsForService {
 	         assertThat(found.size())
 	          .isEqualTo(1);
 	     }
-  
+	    
 	@Test
 	public void testValue()
 	{

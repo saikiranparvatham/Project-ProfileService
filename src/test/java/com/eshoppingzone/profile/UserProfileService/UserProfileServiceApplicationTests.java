@@ -63,15 +63,14 @@ public class UserProfileServiceApplicationTests {
     			"ramesh@gmail.com",
     			"987",
     			address1,
-    			"xyz",
+     			"xyz",
     			LocalDate.now(),
     		"m",
     			"customer");
     	
     	ProfileResource resource = new ProfileResource();
     	resource.updateProfile(profile1);
-    }	
-	
-	
+   }	
+	 
 }
 

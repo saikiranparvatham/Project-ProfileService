@@ -62,4 +62,13 @@ public class ProfileResource {
 	{
 		 service.deleteProfile(profileId);
 	}
+	
+	@GetMapping("/getbyusernames/{username}")
+	public UserProfile getByUserName(@PathVariable String username)
+	{
+		return service.getByUserName(username);
+	}
+	
+	
+	
 }

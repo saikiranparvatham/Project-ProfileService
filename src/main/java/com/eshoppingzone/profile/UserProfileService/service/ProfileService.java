@@ -19,4 +19,9 @@ public interface ProfileService {
 
 	void addNewdeliveryProfile(UserProfile profile);
 
+
+	UserProfile getByUserName(String username);
+	
+	
+
 }

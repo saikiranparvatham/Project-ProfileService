@@ -2,6 +2,8 @@ package com.eshoppingzone.profile.UserProfileService;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +12,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.eshoppingzone.profile.UserProfileService.pojo.Address;
 import com.eshoppingzone.profile.UserProfileService.pojo.UserProfile;
+
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +28,34 @@ public class TestUsingRest {
 
     @Autowired
     private TestRestTemplate testRestTemplate;
+    
+    @Before
+    public void postBefore()
+    {
+      	Address address=new Address(404,
+    			"jp road",
+    			"airoli",
+    			"mumbai",
+    			"maharashtra",
+    			4000);
+    	
+    	List<Address> address1 = new ArrayList<Address>();
+    	address1.add(address);
+    	
+    			
+    	UserProfile profile1 = new UserProfile(	112,
+    			"ramesh",
+    			"url",
+    			"ramesh@gmail.com",
+    			"987",
+    			address1,
+    			"xyz",
+    			LocalDate.now(),
+    		"m",
+    			"customer");
+    	
+    	testRestTemplate.postForEntity("/profiles/customers", profile1,String.class);
+    }
     
     @Test
     public void testGetAPI() throws Exception {
@@ -46,7 +78,6 @@ public class TestUsingRest {
         //assert
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
     }
-    
     
     @Test
     public void testPostAPI()
@@ -83,6 +114,4 @@ public class TestUsingRest {
         assertEquals(entity.getStatusCode(), HttpStatus.OK);
     }
 
- 
- 
 }

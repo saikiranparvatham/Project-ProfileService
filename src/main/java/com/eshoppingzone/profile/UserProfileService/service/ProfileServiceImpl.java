@@ -2,7 +2,9 @@ package com.eshoppingzone.profile.UserProfileService.service;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import com.eshoppingzone.profile.UserProfileService.pojo.Role;
 import com.eshoppingzone.profile.UserProfileService.pojo.UserProfile;
@@ -14,10 +16,18 @@ public class ProfileServiceImpl implements ProfileService {
 	@Autowired
 	private ProfileRepository repository;
 	
+	@Autowired
+	private RestTemplate restTemplate;
+	
 	@Override
 	public UserProfile addNewCustomerProfile(UserProfile profile) {
 		profile.setRole(Role.Customer);
-		return repository.save(profile);
+		UserProfile user1 = repository.save(profile);
+		int id=user1.getProfileId();
+		System.out.println(id);
+	/*	restTemplate.postForEntity("http://10.246.92.94:8426/wallets/"+id, null, null);*/
+		restTemplate.postForEntity("http://10.246.92.75:9091/carts/"+id, null, null);
+		return user1;
 	}
 
 	@Override
@@ -25,7 +35,6 @@ public class ProfileServiceImpl implements ProfileService {
 		profile.setRole(Role.Merchant);
 		profile.setAddresses(null);
 		repository.save(profile);
-		
 	}
 
 	@Override
@@ -53,8 +62,13 @@ public class ProfileServiceImpl implements ProfileService {
 
 	@Override
 	public void deleteProfile(int profileId) {
-		 repository.deleteById(profileId);;
+		 repository.deleteById(profileId);
 	}
+
+	public UserProfile getByUserName(String username) {
+		return repository.findByUsername(username);
+	}
+
 
 	
 }
